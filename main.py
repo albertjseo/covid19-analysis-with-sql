@@ -8,5 +8,4 @@ def main():
     # Pretend data
     most_recent_update = "Feb 11 2024"
 
-    return render_template("landing_page.html",
-                           most_recent_update=most_recent_update)
+    return render_template("landing_page.html", most_recent_update=most_recent_update)
