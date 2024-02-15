@@ -1,6 +1,9 @@
 # **COVID19-Analysis-with-SQL**
 ## Introduction
-This project focuses on analyzing data related to the COVID-19 pandemic using SQL queries. This dataset provides information about COVID-19 cases such as deaths, hospitalizations, and vaccinations across different locations and continents. We aim to provide insight and answer important questions about the pandemic as well as provide further exploratory and/or predictive analysis.
+This project focuses on analyzing data related to the COVID-19 pandemic using SQL queries. 
+This dataset provides information about COVID-19 cases such as deaths, hospitalizations, and vaccinations across 
+different locations and continents. We aim to provide insight and answer important questions about the pandemic as well 
+as provide further exploratory and/or predictive analysis.
 
 ## Getting Started
 ### Clone COVID19-Analysis-with-SQL project
@@ -39,5 +42,4 @@ increase the list of dependencies by adding plugins yourself.
 Flask documentation: https://flask.palletsprojects.com/en/3.0.x/quickstart/#a-minimal-application.
 
 ## HTML Templates
-The template system provides some HTML syntax which are placeholders for variables and expressions that are replaced by 
-their actual values when the template is rendered. 
+The template system, in combintation with "jinja2" provides the ability to integrate html and css with python.
