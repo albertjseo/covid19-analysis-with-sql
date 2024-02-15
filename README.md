@@ -37,3 +37,7 @@ dependencies to update and watch for security bugs. Cons are that sometimes you 
 increase the list of dependencies by adding plugins yourself.
 
 Flask documentation: https://flask.palletsprojects.com/en/3.0.x/quickstart/#a-minimal-application.
+
+## HTML Templates
+The template system provides some HTML syntax which are placeholders for variables and expressions that are replaced by 
+their actual values when the template is rendered.
