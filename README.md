@@ -11,7 +11,6 @@ This project focuses on analyzing data related to the COVID-19 pandemic using SQ
 ### Check branch
 You will want to be sure that you are in your 'dev' branch before proceeding. *If a 'dev' branch does not exist, you will need to create one.*
 > git status (if status reads 'On branch dev' proceed to next)
-> \
 
 If status reads On branch 'main' and a 'dev' branch does not exist, you will need to create it before switching.
 > git switch -c dev
