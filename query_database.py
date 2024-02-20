@@ -14,5 +14,11 @@ engine = create_engine(
 # Connect to database
 with engine.connect() as connection:
     result = connection.execute(text("select * from covid_data limit 10"))
+    location = connection.execute(text("select distinct location as countries from covid_data where length(iso_code) = 3"))
+    us_data = connection.execute(text("select * from covid_data where iso_code = 'USA' limit 10"))
+    can_data = connection.execute(text("select * from covid_data where iso_code = 'CAN' limit 10"))
 
 print(result.mappings().all())
+print(location.mappings().all())
+print(us_data.mappings().all())
+print(can_data.mappings().all())
