@@ -40,6 +40,12 @@ pip install -r requirements.txt
 pip freeze > requirements.txt
 ```
 
+### Running local dev server
+Start a local dev server with
+```shell
+flask --app main run
+```
+
 ## Flask App
 Flask is a web framework that provides you with tools, libraries and technologies that allow you to build a 
 web application. This web application can be some web pages, a blog, a wiki or go as big as a web-based calendar 
