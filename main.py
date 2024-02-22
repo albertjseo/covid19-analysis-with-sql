@@ -15,14 +15,44 @@ def main():
 
     # Connect to database
     with engine.connect() as connection:
-        # Execute query
-        res = connection.execute(text("SELECT iso_code, MAX(date) "
-                                      "FROM covid_data "
-                                      "WHERE iso_code = 'USA' "
-                                      "GROUP BY iso_code "
-                                      "ORDER BY iso_code")).mappings().all()
+        # Execute query for most recent update
+        most_recent_update = (
+            connection.execute(
+                text(
+                    "SELECT iso_code, MAX(date) "
+                    "FROM covid_data "
+                    "WHERE iso_code = 'USA' "
+                    "GROUP BY iso_code "
+                    "ORDER BY iso_code"
+                )
+            )
+            .mappings()
+            .all()
+        )
 
-    # Filter for date of last data point for USA
-    usa_data_last_update_date = res[0]['max(`date`)']
+        # Filter for date of last data point for USA
+        usa_data_last_update_date = most_recent_update[0]["max(`date`)"]
 
-    return render_template("landing_page.html", most_recent_update=usa_data_last_update_date)
+        # Execute query for which countries we have data for
+        available_countries = (
+            connection.execute(
+                text(
+                    "SELECT DISTINCT location AS countries "
+                    "FROM covid_data "
+                    "WHERE length(iso_code) = 3"
+                )
+            )
+            .mappings()
+            .all()
+        )
+
+    # Add landing_page HTML contents
+    page = render_template(
+        "landing_page.html", most_recent_update=usa_data_last_update_date
+    )
+
+    # Add a table
+    page += render_template("countries_table.html", data=available_countries)
+
+    # Render the page
+    return page
