@@ -1,4 +1,4 @@
-# **COVID19-Analysis-with-SQL**
+# COVID19-Analysis-with-SQL
 ## Introduction
 This project focuses on analyzing data related to the COVID-19 pandemic using SQL queries. 
 This dataset provides information about COVID-19 cases such as deaths, hospitalizations, and vaccinations across 
@@ -7,26 +7,38 @@ as provide further exploratory and/or predictive analysis.
 
 ## Getting Started
 ### Clone COVID19-Analysis-with-SQL project
->cd destination\
->git clone https://github.com/albertjseo/COVID19-Analysis-with-SQL.git
+```shell
+cd destination\
+git clone https://github.com/albertjseo/COVID19-Analysis-with-SQL.git
+```
 
 ### Check branch
 You will want to be sure that you are in your 'dev' branch before proceeding. *If a 'dev' branch does not exist, 
 you will need to create one.*
-> git status (if status reads 'On branch dev' proceed to next)
+```shell
+git status (if status reads 'On branch dev' proceed to next)
+```
 
 If status reads On branch 'main' and a 'dev' branch does not exist, you will need to create it before switching.
-> git switch -c dev
+```shell
+git switch -c dev
+```
 
 ### Good coding practice
->* remember to create a new virtual environment (/venv)
+* Remember to create a new virtual environment (`/venv`)
 
 ### Required packages
 You will need to use requirements.txt to install the required packages onto your local machine.
->pip install -r requirements.txt
+
+```shell
+pip install -r requirements.txt
+```
 
 ### Updating required packages
->pip freeze > requirements.txt
+
+```shell
+pip freeze > requirements.txt
+```
 
 ## Flask App
 Flask is a web framework that provides you with tools, libraries and technologies that allow you to build a 
@@ -42,4 +54,4 @@ increase the list of dependencies by adding plugins yourself.
 Flask documentation: https://flask.palletsprojects.com/en/3.0.x/quickstart/#a-minimal-application.
 
 ## HTML Templates
-The template system, in combintation with "jinja2" provides the ability to integrate html and css with python.
+The template system, in combination with "jinja2" provides the ability to integrate html and css with python.
