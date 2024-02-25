@@ -33,26 +33,10 @@ def main():
         # Filter for date of last data point for USA
         usa_data_last_update_date = most_recent_update[0]["max(`date`)"]
 
-        # Execute query for which countries we have data for
-        available_countries = (
-            connection.execute(
-                text(
-                    "SELECT DISTINCT location AS countries "
-                    "FROM covid_data "
-                    "WHERE length(iso_code) = 3"
-                )
-            )
-            .mappings()
-            .all()
-        )
-
     # Add landing_page HTML contents
     page = render_template(
         "landing_page.html", most_recent_update=usa_data_last_update_date
     )
-
-    # Add a table
-    page += render_template("countries_table.html", data=available_countries)
 
     # Render the page
     return page
