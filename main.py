@@ -49,6 +49,7 @@ def total_cases_form():
 @app.route("/total_cases", methods=["POST"])
 def total_cases():
     country = request.form["country_filter"]
+    limiter = request.form["num_results"]
 
     # Connect to MySQL
     engine = create_engine(
@@ -64,7 +65,7 @@ def total_cases():
                     "SELECT total_cases, date, positive_rate "
                     "FROM covid_data "
                     f"WHERE iso_code = '{country}' "
-                    "LIMIT 30, 10"
+                    f"LIMIT {limiter}"
                 )
             )
             .mappings()
