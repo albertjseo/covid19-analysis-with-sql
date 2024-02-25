@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from sqlalchemy import create_engine, text
 
 app = Flask(__name__)
@@ -41,10 +41,15 @@ def main():
     # Render the page
     return page
 
+@app.route("/total_cases", methods=["GET"])
+def total_cases_form():
+    return render_template("total_cases_form.html")
 
 # make a new page
-@app.route("/total_cases")
+@app.route("/total_cases", methods=["POST"])
 def total_cases():
+    country = request.form["country_filter"]
+
     # Connect to MySQL
     engine = create_engine(
         f"mysql+mysqlconnector://{os.getenv('DATABASE_USERNAME')}:{os.getenv('DATABASE_PASSWORD')}@{os.getenv('DATABASE_HOST')}/{os.getenv('DATABASE')}"
@@ -58,7 +63,7 @@ def total_cases():
                 text(
                     "SELECT total_cases, date, positive_rate "
                     "FROM covid_data "
-                    "WHERE iso_code = 'USA' "
+                    f"WHERE iso_code = '{country}' "
                     "LIMIT 30, 10"
                 )
             )
