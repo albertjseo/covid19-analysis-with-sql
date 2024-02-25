@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Total Cases</th>
+        <th>Positive Rates</th>
+    </tr>
+    {% for row in data %}
+        <tr>
+            <td>{{row.date}}</td>
+            <td>{{row.total_cases}}</td>
+            <td>{{row.positive_rate}}</td>
+        </tr>
+    {% endfor %}
+</table>

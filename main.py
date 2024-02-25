@@ -56,3 +56,29 @@ def main():
 
     # Render the page
     return page
+
+
+# make a new page
+@app.route("/total_cases")
+def total_cases():
+    # Connect to MySQL
+    engine = create_engine(
+        f"mysql+mysqlconnector://{os.getenv('DATABASE_USERNAME')}:{os.getenv('DATABASE_PASSWORD')}@{os.getenv('DATABASE_HOST')}/{os.getenv('DATABASE')}"
+    )
+
+    # Connect to database
+    with engine.connect() as connection:
+        # Execute query for most recent update
+        us_total_cases = (
+            connection.execute(
+                text(
+                    "SELECT total_cases, date, positive_rate "
+                    "FROM covid_data "
+                    "WHERE iso_code = 'USA' "
+                    "LIMIT 30, 10"
+                )
+            )
+            .mappings()
+            .all()
+        )
+    return render_template("total_cases.html", data=us_total_cases)
