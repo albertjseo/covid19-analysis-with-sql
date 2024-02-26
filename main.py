@@ -104,3 +104,35 @@ def outcome():
             .all()
         )
     return render_template("outcomes.html", data=outcomes)
+
+@app.route("/vaccination_status", methods=["GET"])
+def vaccination_status_form():
+    return render_template("vaccination_status_form.html")
+
+# make a new page
+@app.route("/vaccination_status", methods=["POST"])
+def vax_status():
+    country = request.form["country_filter"]
+    limiter = request.form["num_results"]
+
+    # Connect to MySQL
+    engine = create_engine(
+        f"mysql+mysqlconnector://{os.getenv('DATABASE_USERNAME')}:{os.getenv('DATABASE_PASSWORD')}@{os.getenv('DATABASE_HOST')}/{os.getenv('DATABASE')}"
+    )
+
+    # Connect to database
+    with engine.connect() as connection:
+        # Execute query for most recent update
+        vaccinations = (
+            connection.execute(
+                text(
+                    "SELECT total_vaccinations, total_boosters, date "
+                    "FROM covid_data "
+                    f"WHERE iso_code = '{country}' "
+                    f"LIMIT {limiter}"
+                )
+            )
+            .mappings()
+            .all()
+        )
+    return render_template("vaccination_status.html", data=vaccinations)
