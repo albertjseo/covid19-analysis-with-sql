@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Hospitalizations</th>
+        <th>Admitted to I.C.U.</th>
+        <th>Total Deaths</th>
+    </tr>
+    {% for row in data %}
+        <tr>
+            <td>{{row.date}}</td>
+            <td>{{row.hosp_patients}}</td>
+            <td>{{row.icu_patients}}</td>
+            <td>{{row.total_deaths}}</td>
+        </tr>
+    {% endfor %}
+</table>
