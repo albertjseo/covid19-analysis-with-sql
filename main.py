@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask, render_template, request
+from markupsafe import Markup
 from sqlalchemy import create_engine, text
 
 app = Flask(__name__)
@@ -39,12 +40,14 @@ def main():
     )
 
     # Render the page
-    return page
+    return render_template("base.html", content=Markup(page))
 
 
 @app.route("/total_cases", methods=["GET"])
 def total_cases_form():
-    return render_template("total_cases_form.html")
+    page = render_template("total_cases_form.html")
+
+    return render_template("base.html", content=Markup(page))
 
 
 # make a new page
@@ -73,12 +76,17 @@ def total_cases():
             .mappings()
             .all()
         )
-    return render_template("total_cases.html", data=total_cases)
+
+    page = render_template("total_cases.html", data=total_cases)
+
+    return render_template("base.html", content=Markup(page))
 
 
 @app.route("/outcomes", methods=["GET"])
 def outcomes_form():
-    return render_template("outcomes_form.html")
+    page = render_template("outcomes_form.html")
+
+    return render_template("base.html", content=Markup(page))
 
 
 # make a new page
@@ -107,12 +115,16 @@ def outcome():
             .mappings()
             .all()
         )
-    return render_template("outcomes.html", data=outcomes)
+    page = render_template("outcomes.html", data=outcomes)
+
+    return render_template("base.html", content=Markup(page))
 
 
 @app.route("/vaccination_status", methods=["GET"])
 def vaccination_status_form():
-    return render_template("vaccination_status_form.html")
+    page = render_template("vaccination_status_form.html")
+
+    return render_template("base.html", content=Markup(page))
 
 
 # make a new page
@@ -141,4 +153,7 @@ def vax_status():
             .mappings()
             .all()
         )
-    return render_template("vaccination_status.html", data=vaccinations)
+
+    page = render_template("vaccination_status.html", data=vaccinations)
+
+    return render_template("base.html", content=Markup(page))
