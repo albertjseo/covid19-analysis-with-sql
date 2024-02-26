@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Vaccinations</th>
+        <th>Boosted</th>
+    </tr>
+    {% for row in data %}
+        <tr>
+            <td>{{row.date}}</td>
+            <td>{{row.total_vaccinations}}</td>
+            <td>{{row.total_boosters}}</td>
+        </tr>
+    {% endfor %}
+</table>
