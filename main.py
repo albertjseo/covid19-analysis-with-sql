@@ -41,9 +41,11 @@ def main():
     # Render the page
     return page
 
+
 @app.route("/total_cases", methods=["GET"])
 def total_cases_form():
     return render_template("total_cases_form.html")
+
 
 # make a new page
 @app.route("/total_cases", methods=["POST"])
@@ -73,9 +75,11 @@ def total_cases():
         )
     return render_template("total_cases.html", data=total_cases)
 
+
 @app.route("/outcomes", methods=["GET"])
 def outcomes_form():
     return render_template("outcomes_form.html")
+
 
 # make a new page
 @app.route("/outcomes", methods=["POST"])
@@ -105,9 +109,11 @@ def outcome():
         )
     return render_template("outcomes.html", data=outcomes)
 
+
 @app.route("/vaccination_status", methods=["GET"])
 def vaccination_status_form():
     return render_template("vaccination_status_form.html")
+
 
 # make a new page
 @app.route("/vaccination_status", methods=["POST"])
