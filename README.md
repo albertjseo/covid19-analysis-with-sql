@@ -16,7 +16,7 @@ into HTML. Once completed the information is then sent back to the user.
 This project uses [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) workflow as 
 the Git branching model.
 
-![img_1.png](img_1.png)
+![img_2.png](img_2.png)
 
 **Develop and main branches**
 
@@ -31,6 +31,40 @@ A simple way to do this is to create an empty develop branch locally and push it
 This branch will contain the complete history of the project, whereas main will contain an abridged version. 
 Other developers should now clone the central repository and create a tracking branch for develop. When the develop branch
 is done it is merged into main.
+
+**Creating a feature branch**\
+
+Without the git-flow extensions:
+>git checkout develop\
+>git checkout -b feature_branch
+
+Continue your work and use Git like you normally would.
+
+Finishing a feature branch
+When you’re done with the development work on the feature, the next step is to merge the feature_branch into develop.
+
+Without the git-flow extensions:
+>git checkout develop\
+>git merge feature_branch
+
+**Release branches**\
+Once develop has acquired enough features for a release (or a predetermined release date is approaching), you fork a release branch off of develop. Creating this branch starts the next release cycle, so no new features can be added after this point—only bug fixes, documentation generation, and other release-oriented tasks should go in this branch. Once it's ready to ship, the release branch gets merged into main and tagged with a version number. In addition, it should be merged back into develop, which may have progressed since the release was initiated.
+
+Using a dedicated branch to prepare releases makes it possible for one team to polish the current release while another team continues working on features for the next release. It also creates well-defined phases of development (e.g., it's easy to say, “This week we're preparing for version 4.0,” and to actually see it in the structure of the repository).
+
+Making release branches is another straightforward branching operation. Like feature branches, release branches are based on the develop branch.
+
+Without the git-flow extensions:
+>git checkout develop\
+>git checkout -b release/0.1.0
+
+Once the release is ready to ship, it will get merged it into main and develop, then the release branch will be deleted. It’s important to merge back into develop because critical updates may have been added to the release branch and they need to be accessible to new features. If your organization stresses code review, this would be an ideal place for a pull request.
+
+To finish a release branch, use the following methods:
+Without the git-flow extensions:
+>git checkout main\
+>git merge release/0.1.0
+
 [www.atlassian.com](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
 ## Getting Started
