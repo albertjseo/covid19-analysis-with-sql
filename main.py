@@ -1,7 +1,11 @@
+import base64
+import io
 import os
 
 from flask import Flask, render_template, request
 from markupsafe import Markup
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 from sqlalchemy import create_engine, text
 
 app = Flask(__name__)
@@ -157,3 +161,23 @@ def vax_status():
     page = render_template("vaccination_status.html", data=vaccinations)
 
     return render_template("base.html", content=Markup(page))
+
+
+def convert_matplotlib_to_img_src(fig: Figure) -> str:
+    """
+    Converts a matplotlib Figure into a format passable into an HTML img tag's
+    src
+
+    :param fig: matplotlib Figure
+    :return:
+    """
+
+    # Convert plot to PNG image
+    png_image = io.BytesIO()
+    FigureCanvas(fig).print_png(png_image)
+
+    # Encode PNG image to base64 string
+    png_image_b64_string = "data:image/png;base64,"
+    png_image_b64_string += base64.b64encode(png_image.getvalue()).decode("utf8")
+
+    return png_image_b64_string
