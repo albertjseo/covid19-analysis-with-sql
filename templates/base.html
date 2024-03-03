@@ -2,12 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Covid19 Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>COVID-19 DASHBOARD</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<div>
-    {{ content }}
-</div>
+<!-- add top nav-bar -->
+    <div class="topnav">
+        <a class="/" href="/">HOME</a>
+        <a href="/total_cases">TOTAL CASES</a>
+        <a href="/vaccination_status">VACCINATION STATUS</a>
+        <a href="/outcomes">PATIENT OUTCOME</a>
+    </div>
+
+    <div>
+        {{ content }}
+    </div>
+
 </body>
 </html>
