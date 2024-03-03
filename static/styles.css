@@ -20,12 +20,6 @@
     color: black;
 }
 
-/* Add a color to the active/current link */
-.topnav a.active {
-    background-color: #333333;
-    color: white;
-}
-
 /* Remove bullets from nav */
 ul {
     list-style-type: none;

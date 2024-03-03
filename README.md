@@ -7,16 +7,16 @@ as provide further exploratory and/or predictive analysis.
 ## Aim
 Use flask to provide a user the ability to interact with COVID19 data that was managed with the use of SQL queries. 
 The user will be able to go to a webpage and interact with flask, giving information between the web browser and flask 
-such as inputs to filter with. The user then will interact with flask by clicking the "submit" button and Flask will 
-then receive that request from the user and communicate with the MySQL server for that information by providing it with 
-the query. The server will then provide raw information to flask which will then filter, manipulate, and format the data 
+in the form of inputs to filter with. The user will then interact with flask by clicking the "submit" button and flask will 
+receive that request from the user and communicate with the MySQL server, providing it with the query. 
+The server will then provide raw information to flask which will then filter, manipulate, and format the data 
 into HTML. Once completed the information is then sent back to the user.
 
 ## Workflow
 This project uses [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) workflow as 
 the Git branching model.
 
-![img_2.png](img_2.png)
+![img.png](img.png)
 
 **Develop and main branches**
 
@@ -32,7 +32,7 @@ This branch will contain the complete history of the project, whereas main will 
 Other developers should now clone the central repository and create a tracking branch for develop. When the develop branch
 is done it is merged into main.
 
-**Creating a feature branch**\
+**Creating a feature branch**
 
 Without the git-flow extensions:
 >git checkout develop\
