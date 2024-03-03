@@ -7,6 +7,7 @@ from markupsafe import Markup
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from sqlalchemy import create_engine, text
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -81,7 +82,32 @@ def total_cases():
             .all()
         )
 
-    page = render_template("total_cases.html", data=total_cases)
+    # reshape data for matplotlib
+    dates = []
+    case_data = []
+    for row in total_cases:
+        dates.append(row["date"])
+
+        if row["total_cases"] is None:
+            case_values = 0
+        else:
+            case_values = int(row["total_cases"])
+        case_data.append(case_values)
+
+    # Generate plot
+    fig = Figure()
+    axis = fig.add_subplot(1, 1, 1)
+    axis.set_title("Total Cases per Date")
+    axis.set_xlabel("Date")
+    axis.set_ylabel("Number of Total Cases")
+    axis.grid()
+    x_data = dates
+    y_data = case_data
+    axis.plot(x_data, y_data, "b+-")
+
+    total_cases_graph = convert_matplotlib_to_img_src(fig)
+
+    page = render_template("total_cases.html", data=total_cases, total_cases_graph=total_cases_graph)
 
     return render_template("base.html", content=Markup(page))
 
