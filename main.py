@@ -107,7 +107,9 @@ def total_cases():
 
     total_cases_graph = convert_matplotlib_to_img_src(fig)
 
-    page = render_template("total_cases.html", data=total_cases, total_cases_graph=total_cases_graph)
+    page = render_template(
+        "total_cases.html", data=total_cases, total_cases_graph=total_cases_graph
+    )
 
     return render_template("base.html", content=Markup(page))
 
@@ -145,7 +147,26 @@ def outcome():
             .mappings()
             .all()
         )
-    page = render_template("outcomes.html", data=outcomes)
+
+    icu_data = []
+    death_data = []
+
+    # Generate plot
+    fig = Figure()
+    axis = fig.add_subplot(1, 1, 1)
+    axis.set_title("Total ICU Patients vs Deaths")
+    axis.set_xlabel("Total ICU Patients")
+    axis.set_ylabel("Total Deaths")
+    axis.grid()
+    x_data = icu_data
+    y_data = death_data
+    axis.plot(x_data, y_data, "b+-")
+
+    total_outcomes_graph = convert_matplotlib_to_img_src(fig)
+
+    page = render_template(
+        "outcomes.html", data=outcomes, total_outcomes_graph=total_outcomes_graph
+    )
 
     return render_template("base.html", content=Markup(page))
 
@@ -184,7 +205,22 @@ def vax_status():
             .all()
         )
 
-    page = render_template("vaccination_status.html", data=vaccinations)
+    vax_data = []
+    booster_data = []
+
+    fig = Figure()
+    axis = fig.add_subplot(1, 1, 1)
+    axis.set_title("Total Vaccinations vs Boosters")
+    axis.set_xlabel("Total Vaccinations")
+    axis.set_ylabel("Total Boosters")
+    axis.grid()
+    x_data = vax_data
+    y_data = booster_data
+    axis.plot(x_data, y_data, "b+-")
+
+    total_vaccination_graph = convert_matplotlib_to_img_src(fig)
+
+    page = render_template("vaccination_status.html", data=vaccinations, total_vaccination_graph=total_vaccination_graph)
 
     return render_template("base.html", content=Markup(page))
 
