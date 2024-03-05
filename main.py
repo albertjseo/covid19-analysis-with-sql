@@ -4,8 +4,10 @@ import os
 
 from flask import Flask, render_template, request
 from markupsafe import Markup
+from matplotlib import axes
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
+from matplotlib.ticker import MultipleLocator
 from sqlalchemy import create_engine, text
 from datetime import datetime
 
@@ -101,6 +103,13 @@ def total_cases():
     axis.set_xlabel("Date")
     axis.set_ylabel("Number of Total Cases")
     axis.grid()
+    axis.tick_params(direction="out", length=5)
+    axis.axes.set_axisbelow(True)
+
+    n = 5
+    axis.xaxis.set_major_locator(MultipleLocator(n))
+    axis.grid(alpha=0.1, color="black")
+
     x_data = dates
     y_data = case_data
     axis.plot(x_data, y_data, "b+-")
@@ -158,6 +167,11 @@ def outcome():
     axis.set_xlabel("Total ICU Patients")
     axis.set_ylabel("Total Deaths")
     axis.grid()
+
+    n = 5
+    axis.xaxis.set_major_locator(MultipleLocator(n))
+    axis.grid(alpha=0.1, color="black")
+
     x_data = icu_data
     y_data = death_data
     axis.plot(x_data, y_data, "b+-")
@@ -214,13 +228,22 @@ def vax_status():
     axis.set_xlabel("Total Vaccinations")
     axis.set_ylabel("Total Boosters")
     axis.grid()
+
+    n = 5
+    axis.xaxis.set_major_locator(MultipleLocator(n))
+    axis.grid(alpha=0.1, color="black")
+
     x_data = vax_data
     y_data = booster_data
     axis.plot(x_data, y_data, "b+-")
 
     total_vaccination_graph = convert_matplotlib_to_img_src(fig)
 
-    page = render_template("vaccination_status.html", data=vaccinations, total_vaccination_graph=total_vaccination_graph)
+    page = render_template(
+        "vaccination_status.html",
+        data=vaccinations,
+        total_vaccination_graph=total_vaccination_graph,
+    )
 
     return render_template("base.html", content=Markup(page))
 
