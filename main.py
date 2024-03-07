@@ -219,8 +219,22 @@ def vax_status():
             .all()
         )
 
+
     vax_data = []
     booster_data = []
+
+    for row in vaccinations:
+        if row["total_vaccinations"] is None:
+            vax_value = 0
+        else:
+            vax_value = int(row["total_vaccinations"])
+        vax_data.append(vax_value)
+
+        if row["total_boosters"] is None:
+            booster_value = 0
+        else:
+            booster_value = int(row["total_boosters"])
+        booster_data.append(booster_value)
 
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
