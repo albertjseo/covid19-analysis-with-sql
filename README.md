@@ -12,7 +12,7 @@ then receive that request from the user and communicate with the MySQL server fo
 the query. The server will then provide raw information to flask which will then filter, manipulate, and format the data 
 into HTML. Once completed the information is then sent back to the user.
 
-<img src="https://img.shields.io/badge/language-Python-blue.svg" style="zoom:100%;" /> <img src="https://img.shields.io/badge/language-HTML-green.svg" style="zoom:100%;" /> <img src="https://img.shields.io/badge/language-CSS-orange.svg" style="zoom:100%;" /> <img src="https://img.shields.io/badge/language-FLASK-lightblue.svg" style="zoom:100%;" /> <img src="https://img.shields.io/badge/language-SQL-lightgrey.svg" style="zoom:100%;" />
+<img src="https://img.shields.io/badge/language-Python-blue.svg" style="zoom:100%;" /> <img src="https://img.shields.io/badge/language-HTML-green.svg" style="zoom:100%;" /> <img src="https://img.shields.io/badge/language-CSS-orange.svg" style="zoom:100%;" /> <img src="https://img.shields.io/badge/package-FLASK-lightblue.svg" style="zoom:100%;" /> <img src="https://img.shields.io/badge/language-SQL-lightgrey.svg" style="zoom:100%;" />
 
 ## Workflow
 This project uses [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) workflow as 
